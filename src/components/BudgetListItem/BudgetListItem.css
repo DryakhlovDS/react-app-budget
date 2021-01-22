@@ -1,0 +1,25 @@
+.list-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.budget-comment {
+  margin-left: 1rem;
+}
+
+.budget-value {
+  margin-left: auto;
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+.green {
+  font-size: 1.2rem;
+  color: #29a10b;
+}
+
+.red {
+  font-size: 1.2rem;
+  color: brown;
+}

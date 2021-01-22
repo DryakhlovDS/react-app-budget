@@ -1,5 +1,8 @@
+import 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'element-theme-default';
+
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
