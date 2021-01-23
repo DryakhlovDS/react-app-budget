@@ -1,0 +1,21 @@
+.list-control {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+}
+
+.link-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0;
+  border-bottom: 1px solid #606266 !important;
+}
+
+.link-active:hover::after {
+  border-bottom: 1px solid #409eff !important;
+}

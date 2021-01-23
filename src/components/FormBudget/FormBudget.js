@@ -6,12 +6,12 @@ import './FormBudget.css';
 class FormBudget extends React.Component {
   constructor(props) {
     super(props);
-
+    this.formRef = React.createRef();
     this.state = {
       form: {
         type: '',
         comment: '',
-        cash: '',
+        cash: 0,
       },
       rules: {
         type: [{ required: true, message: 'choose type', trigger: 'change' }],
@@ -43,9 +43,10 @@ class FormBudget extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.refs.form.validate((valid) => {
+    this.formRef.current.validate((valid) => {
       if (valid) {
-        alert('submit!');
+        this.props.addItem(this.state.form);
+        this.handleReset(e);
       } else {
         console.log('error submit!!');
         return false;
@@ -55,7 +56,7 @@ class FormBudget extends React.Component {
 
   handleReset(e) {
     e.preventDefault();
-    this.refs.form.resetFields();
+    this.formRef.current.resetFields();
     this.setState({
       form: { type: '', comment: '', cash: '' },
     });
@@ -71,7 +72,7 @@ class FormBudget extends React.Component {
     return (
       <Card className='box-card form-auto' header='Add a new record'>
         <Form
-          ref='form'
+          ref={this.formRef}
           model={this.state.form}
           rules={this.state.rules}
           labelWidth='90%'
@@ -98,7 +99,7 @@ class FormBudget extends React.Component {
           </Form.Item>
           <Form.Item label='Cash' prop='cash'>
             <Input
-              value={this.state.form.cash}
+              value={Number(this.state.form.cash)}
               onChange={this.onChange.bind(this, 'cash')}
             ></Input>
           </Form.Item>
