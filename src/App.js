@@ -28,9 +28,8 @@ function App() {
   const liistArray = Object.values(list);
 
   function addItemList(item) {
-    console.log(item);
     const lastId = Object.keys(list).pop();
-    const newId = Number(lastId) + 1;
+    const newId = Number(lastId) + 1 || 1;
     const newListItem = {
       ...item,
       id: newId,
@@ -41,7 +40,6 @@ function App() {
     }
     // list[newId] = newListItem;
     setList({ ...list, [newListItem.id]: newListItem });
-    console.log(list);
   }
 
   function deleteItem(id) {
