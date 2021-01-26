@@ -10,12 +10,7 @@ function BudgetListItem({ item, delBtn }) {
       <i className={[icon, colorText].join(' ')}></i>
       <span className='budget-comment'>{item.comment}</span>
       <span className={['budget-value', colorText].join(' ')}>{item.cash}</span>
-      <Button
-        type='danger'
-        size='small'
-        plain='true'
-        onClick={() => delBtn(item.id)}
-      >
+      <Button type='danger' size='small' plain onClick={() => delBtn(item.id)}>
         Delete
       </Button>
     </div>

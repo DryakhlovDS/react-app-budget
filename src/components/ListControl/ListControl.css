@@ -6,16 +6,40 @@
   line-height: 1.4rem;
 }
 
-.link-active::after {
+.list-control .el-button {
+  position: relative;
+  color: #606266;
+}
+
+.list-control .el-button:hover {
+  position: relative;
+  color: #409eff;
+}
+
+.list-control .el-button:hover::after {
   content: '';
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
   height: 0;
-  border-bottom: 1px solid #606266 !important;
+  border-bottom: 1px solid #409eff !important;
 }
 
-.link-active:hover::after {
+.list-control .link-active {
+  color: #606266;
+}
+
+.list-control .link-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0;
+  border-bottom: 1px solid #606266;
+}
+
+.list-control .link-active:hover::after {
   border-bottom: 1px solid #409eff !important;
 }
