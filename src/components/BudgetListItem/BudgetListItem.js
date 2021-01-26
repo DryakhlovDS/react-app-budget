@@ -1,10 +1,12 @@
 import React from 'react';
 import { Button } from 'element-react';
+import { ChangeList } from '../../context';
 import './BudgetListItem.css';
 
-function BudgetListItem({ item, delBtn }) {
+function BudgetListItem({ item }) {
   const icon = item.type === 'Income' ? 'el-icon-plus' : 'el-icon-minus';
   const colorText = item.type === 'Income' ? 'green' : 'red';
+  const delBtn = React.useContext(ChangeList);
   return (
     <div className='list-item'>
       <i className={[icon, colorText].join(' ')}></i>

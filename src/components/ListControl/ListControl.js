@@ -1,9 +1,12 @@
 import React from 'react';
 import { Button } from 'element-react';
+import { StateListArray } from '../../context';
 import './ListControl.css';
 
-function ListControl({ sortListBtn }) {
+function ListControl() {
   const classLinks = '';
+  const { sortList } = React.useContext(StateListArray);
+
   function sort(val, e) {
     const links = document.querySelectorAll('.list-control .el-button');
     links.forEach((link) => link.classList.remove('link-active'));
@@ -12,7 +15,7 @@ function ListControl({ sortListBtn }) {
       linkActive = linkActive.parentElement;
     }
     linkActive.classList.add('link-active');
-    sortListBtn(val);
+    sortList(val);
   }
   return (
     <div class='list-control'>

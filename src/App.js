@@ -3,6 +3,7 @@ import './App.css';
 import FormBudget from './components/FormBudget/FormBudget';
 import TotalBalance from './components/TotalBalance/TotalBalance';
 import BudgetList from './components/BudgetList/BudgetList';
+import { StateListArray, ChangeList } from './context';
 
 function App() {
   const [list, setList] = React.useState({
@@ -25,7 +26,9 @@ function App() {
       id: 3,
     },
   });
-  const liistArray = Object.values(list);
+  const listArray = Object.values(list);
+  let listSorted;
+  sortList();
 
   function addItemList(item) {
     const lastId = Object.keys(list).pop();
@@ -47,11 +50,26 @@ function App() {
     setList({ ...list });
   }
 
+  function sortList(val = 'all') {
+    console.log(val);
+    if (val === 'all') {
+      listSorted = Object.values(list);
+      console.log(listSorted);
+      return;
+    }
+    listSorted = Object.values(list).filter((item) => item.type === val);
+    console.log(listSorted);
+  }
+
   return (
     <div className='App'>
       <FormBudget addItem={addItemList} />
-      <TotalBalance list={liistArray} />
-      <BudgetList list={liistArray} delBtn={deleteItem} />
+      <TotalBalance list={listArray} />
+      <StateListArray.Provider value={{ listSorted, sortList }}>
+        <ChangeList.Provider value={deleteItem}>
+          <BudgetList />
+        </ChangeList.Provider>
+      </StateListArray.Provider>
     </div>
   );
 }
