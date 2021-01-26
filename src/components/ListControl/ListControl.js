@@ -5,7 +5,7 @@ import './ListControl.css';
 
 function ListControl() {
   const classLinks = '';
-  const { sortList } = React.useContext(StateListArray);
+  let { sortList, setTypeSort } = React.useContext(StateListArray);
 
   function sort(val, e) {
     const links = document.querySelectorAll('.list-control .el-button');
@@ -15,6 +15,7 @@ function ListControl() {
       linkActive = linkActive.parentElement;
     }
     linkActive.classList.add('link-active');
+    setTypeSort(val);
     sortList(val);
   }
   return (

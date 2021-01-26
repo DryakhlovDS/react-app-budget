@@ -8,7 +8,6 @@ import { StateListArray } from '../../context';
 function Budgetlist() {
   let listItems;
   const { listSorted } = React.useContext(StateListArray);
-  console.log(listSorted);
   if (listSorted.length) {
     listItems = listSorted.map((item) => (
       <BudgetListItem item={item} key={item.id} />

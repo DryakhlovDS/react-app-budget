@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import FormBudget from './components/FormBudget/FormBudget';
 import TotalBalance from './components/TotalBalance/TotalBalance';
@@ -27,8 +27,8 @@ function App() {
     },
   });
   const listArray = Object.values(list);
-  let listSorted;
-  sortList();
+  let [listSorted, setListSorted] = useState(listArray);
+  let [typeSort, setTypeSort] = useState('all');
 
   function addItemList(item) {
     const lastId = Object.keys(list).pop();
@@ -41,23 +41,24 @@ function App() {
     if (newListItem.type === 'Outcome') {
       newListItem.cash = 0 - newListItem.cash;
     }
-    // list[newId] = newListItem;
-    setList({ ...list, [newListItem.id]: newListItem });
+    Object.assign(list, { [newListItem.id]: newListItem });
+    setList({ ...list });
+    sortList(typeSort);
   }
 
   function deleteItem(id) {
     delete list[id];
     setList({ ...list });
+    sortList(typeSort);
   }
 
-  function sortList(val = 'all') {
-    console.log(val);
+  function sortList(val) {
     if (val === 'all') {
-      listSorted = Object.values(list);
+      setListSorted(Object.values(list));
       console.log(listSorted);
       return;
     }
-    listSorted = Object.values(list).filter((item) => item.type === val);
+    setListSorted(Object.values(list).filter((item) => item.type === val));
     console.log(listSorted);
   }
 
@@ -65,7 +66,7 @@ function App() {
     <div className='App'>
       <FormBudget addItem={addItemList} />
       <TotalBalance list={listArray} />
-      <StateListArray.Provider value={{ listSorted, sortList }}>
+      <StateListArray.Provider value={{ listSorted, sortList, setTypeSort }}>
         <ChangeList.Provider value={deleteItem}>
           <BudgetList />
         </ChangeList.Provider>
